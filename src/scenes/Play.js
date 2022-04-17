@@ -28,6 +28,10 @@ class Play extends Phaser.Scene {
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
         // define keys
+
+        this.p1Laser = new Laser(this,50, 0, 'laser', 0).setOrigin(0, 0);
+        this.p1Laser.alpha = 0;
+
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -100,6 +104,7 @@ class Play extends Phaser.Scene {
           this.shipExplode(this.ship01);
         }
     }
+    /*
     checkCollision(rocket, ship) {
       // simple AABB checking
       if (rocket.x < ship.x + ship.width && 
@@ -111,7 +116,25 @@ class Play extends Phaser.Scene {
           return false;
       }
   }
+  */
+
+  checkCollision(laser, ship){
+    if(laser.x < ship.x + ship.width && laser.x + laser.width > ship.x && laser.y < ship.y + ship.height && laser.height + laser.y > ship.y){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   shipExplode(ship) {
+
+    //test laser anim
+    this.p1Laser.alpha = 1;
+    let beam = this.add.sprite(ship.x, ship.y, 'laser');
+    beam.anims.play('laser');
+    //this.p1Laser.anims.play('laser');
+
+
     // temporarily hide ship
     ship.alpha = 0;
     // create explosion sprite at ship's position
@@ -121,6 +144,7 @@ class Play extends Phaser.Scene {
       ship.reset();                         // reset ship position
       ship.alpha = 1;                       // make ship visible again
       boom.destroy();                       // remove explosion sprite
+      this.p1Laser.alpha = 0;
     });   
     this.p1Score += ship.points;
     this.scoreLeft.text = this.p1Score;   

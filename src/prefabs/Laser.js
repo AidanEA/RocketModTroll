@@ -5,22 +5,4 @@ class Laser extends Phaser.GameObjects.Sprite {
 
         scene.add.existing(this);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
