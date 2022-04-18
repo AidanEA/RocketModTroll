@@ -4,12 +4,13 @@ class Play extends Phaser.Scene {
     }
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/wizardbeeg2.png');
+        this.load.image('rocketstatic', './assets/wizardbeeg2.png');
         this.load.image('spaceship', './assets/enemymagicmissle.png');
         this.load.image('spaceshipspecial', './assets/enemymagicmisslespecial.png');
         this.load.image('starfield', './assets/battleground.png');
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 13});
+        this.load.spritesheet('explosion', './assets/explosion2.png', {frameWidth: 25, frameHeight: 11, startFrame: 0, endFrame: 30});
         this.load.spritesheet('laser', './assets/blast.png', {frameWidth: 16, frameHeight: 480, startFrame: 0, endFrame: 16})
+        this.load.spritesheet('rocket', './assets/WizardSheet.png', {frameWidth: 36, frameHeight: 50, startFrame: 0, endFrame: 4})
       }
     create() {
         // place tile sprite
@@ -31,7 +32,7 @@ class Play extends Phaser.Scene {
           // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceshipspecial', 0, 30, true).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20, false).setOrigin(0,0);
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10, false).setOrigin(0,0);
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', -20, 10, false).setOrigin(0,0);
         // define keys
 
 
@@ -45,7 +46,7 @@ class Play extends Phaser.Scene {
       // animation config
         this.anims.create({
           key: 'explode',
-          frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 13, first: 0}),
+          frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 30, first: 0}),
           frameRate: 30
         })
 
@@ -53,6 +54,12 @@ class Play extends Phaser.Scene {
           key: 'laser',
           frames: this.anims.generateFrameNumbers('laser', {start: 0, end: 16, first: 0}),
           frameRate: 30
+        })
+
+        this.anims.create({
+          key: 'shoot',
+          frames: this.anims.generateFrameNumbers('rocket', {start: 0, end: 16, first: 0}),
+          frameRate: 15
         })
         // initialize score
         this.p1Score = 0;
@@ -163,7 +170,7 @@ class Play extends Phaser.Scene {
     let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
     boom.anims.play('explode');             // play explode animation
     boom.on('animationcomplete', () => {    // callback after anim completes
-      //ship.reset();                         // reset ship position
+      ship.reset();                         // reset ship position
       ship.alpha = 1;                       // make ship visible again
       boom.destroy();                       // remove explosion sprite
      // this.p1Laser.alpha = 0;
