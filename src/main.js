@@ -1,6 +1,6 @@
 // reserve keyboard vars
 let keyF, keyR, keyLEFT, keyRIGHT;
-
+let keyC;
 let config = {
     type: Phaser.AUTO,
     width: 640,
