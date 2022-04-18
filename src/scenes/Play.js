@@ -118,33 +118,8 @@ class Play extends Phaser.Scene {
           this.shipExplode(this.ship01);
         }
       }
-
-        // if(this.checkCollision(this.p1Rocket, this.ship03)) {
-        //   this.p1Rocket.reset();
-        //   this.shipExplode(this.ship03);
-        // }
-        // if (this.checkCollision(this.p1Rocket, this.ship02)) {
-        //   this.p1Rocket.reset();
-        //   this.shipExplode(this.ship02);
-        // }
-        // if (this.checkCollision(this.p1Rocket, this.ship01)) {
-        //   this.p1Rocket.reset();
-        //   this.shipExplode(this.ship01);
-        // }
     }
-    /*
-    checkCollision(rocket, ship) {
-      // simple AABB checking
-      if (rocket.x < ship.x + ship.width && 
-          rocket.x + rocket.width > ship.x && 
-          rocket.y < ship.y + ship.height &&
-          rocket.height + rocket.y > ship. y) {
-              return true;
-      } else {
-          return false;
-      }
-  }
-  */
+
 
   checkCollision(laser, ship){
     if(laser.x < ship.x + ship.width && laser.x + laser.width > ship.x && laser.y < ship.y + ship.height && laser.height + laser.y > ship.y){
@@ -156,14 +131,6 @@ class Play extends Phaser.Scene {
     }
   }
   shipExplode(ship) {
-
-    //test laser anim
-    // this.p1Laser.alpha = 1;
-    // let beam = this.add.sprite(ship.x, ship.y, 'laser');
-    // beam.anims.play('laser');
-    //this.p1Laser.anims.play('laser');
-
-
     // temporarily hide ship
     ship.alpha = 0;
     // create explosion sprite at ship's position

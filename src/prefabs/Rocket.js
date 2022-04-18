@@ -28,12 +28,6 @@ class Rocket extends Phaser.GameObjects.Sprite {
       this.laser.setVisible(true);
       this.laser.anims.play('laser');
       this.anims.play('shoot');
-      // this.laser.on('animationcomlete' , () => {
-
-
-
-
-      // });
     }
 
 
