@@ -6,7 +6,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
       //this.load.spritesheet('laser', './assets/blast.png', {frameWidth: 16, frameHeight: 480, startFrame: 0, endFrame: 16});
       // add object to existing scene
       scene.add.existing(this);
-      this.moveSpeed = 2;
+      this.moveSpeed = 1;
       this.laser = laser;
     }
 
@@ -24,7 +24,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
       //console.log("Laser should be working");
       this.sfxRocket.play();  // play sfx
       this.laser.x = this.x - 6;
-      this.laser.y = this.y - 400;
+      this.laser.y = this.y - 440;
       this.laser.setVisible(true);
       this.laser.anims.play('laser');
       // this.laser.on('animationcomlete' , () => {

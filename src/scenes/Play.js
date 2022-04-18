@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
 
-        this.p1Laser = new Laser(this,50, 0, 'laser', 0).setOrigin(0, 0);
+        this.p1Laser = new Laser(this,-250, 0, 'laser', 0).setOrigin(0, 0);
         this.p1Laser.setVisible(false);
 
         // add rocket (p1)
@@ -163,7 +163,7 @@ class Play extends Phaser.Scene {
     let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
     boom.anims.play('explode');             // play explode animation
     boom.on('animationcomplete', () => {    // callback after anim completes
-      ship.reset();                         // reset ship position
+      //ship.reset();                         // reset ship position
       ship.alpha = 1;                       // make ship visible again
       boom.destroy();                       // remove explosion sprite
      // this.p1Laser.alpha = 0;

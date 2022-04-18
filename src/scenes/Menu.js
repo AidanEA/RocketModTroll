@@ -5,8 +5,8 @@ class Menu extends Phaser.Scene {
     preload() {
       // load audio
       this.load.audio('sfx_select', './assets/mixkit-retro-game-notification-212.wav');
-      this.load.audio('sfx_explosion', './assets/amogusplosion.wav');
-      this.load.audio('sfx_rocket', './assets/mixkit-fast-small-sweep-transition-166.wav');
+      this.load.audio('sfx_explosion', './assets/missleshot.mp3');
+      this.load.audio('sfx_rocket', './assets/lasershot.mp3');
     } 
     create() {
       //this.add.text(20, 20, "Rocket Patrol Menu");
@@ -24,7 +24,7 @@ class Menu extends Phaser.Scene {
         fixedWidth: 0
       }
 
-      this.add.text(game.config.width/2, game.config.height/2 -borderUISize - borderPadding, 'IMPOSTER PATROL', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 -borderUISize - borderPadding, 'MAGIC PATROL', menuConfig).setOrigin(0.5);
       this.add.text(game.config.width/2, game.config.height/2, 'Use <--> arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
       menuConfig.backgroundColor = '#00FF00';
       menuConfig.color = '#000';
@@ -39,7 +39,7 @@ class Menu extends Phaser.Scene {
       if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
         // easy mode
         game.settings = {
-          spaceshipSpeed: 3,
+          spaceshipSpeed: 4,
           gameTimer: 60000    
         }
         this.sound.play('sfx_select');
@@ -48,7 +48,7 @@ class Menu extends Phaser.Scene {
       if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
         // hard mode
         game.settings = {
-          spaceshipSpeed: 4,
+          spaceshipSpeed: 5,
           gameTimer: 45000    
         }
         this.sound.play('sfx_select');
